@@ -30,4 +30,25 @@ AGENTS.md invariant rules) but live here so the template's `specs/` stays empty 
   fix on `lts/1.24` names its `main` commit (`cherry picked from`; a redone fix writes that line
   by hand): no fix reaches the line that `main` does not already hold.
 
+## Çalışma kararları (bootstrap 2026-11-12)
+
+Bu depo ANEW şablonunun kaynağıdır; ürünü şablonun kendisidir. Bu yüzden **bootstrap edilmez**
+(karar: Yunus Mert, 2026-11-12, R-10 seçenek A): `AGENTS.md` ve `docs/*.md` kullanıcılar için boş
+şablon olarak kalır. ANEW'i iyileştiren her iş bu klasörde yürür ve aşağıdaki kararlara uyar.
+
+- **Language:** `chat=tr · docs=tr` — sohbet ve bu klasördeki spec, plan, rapor Türkçe; protokol
+  alanları (`Status:`, `Approved by / on:`, `Source:`, şablon başlıkları) İngilizce kalır.
+  Kullanıcılara giden şablon dosyaları (`docs/`, `workflows/`, `prompts/`, `adapters/`) İngilizce kalır.
+- **Mode:** `lite` — her spec başlığında `Mode: lite`; bağımsız review ve VERIFY zorunlu.
+- **Doğrulama:** `./scripts/doctor --strict` + `./scripts/selftest` (`.github/workflows/check.yml`);
+  bu depoda `scripts/check.conf` yoktur, tam yeşil CI'dan gelir (`docs/testing.md` kural 6).
+- **Trivial changes:** PR + bir reviewer, spec yok. Trivial = yalnızca Markdown'da yazım, link,
+  biçim düzeltmesi. `scripts/` altındaki her değişiklik ve kural/kapı anlamına dokunan her cümle
+  trivial değildir → spec.
+- **Sensitive area: `gate-enforcement`** — `scripts/check`, `scripts/doctor`, `scripts/residue`,
+  `scripts/selftest` ve kapı alanlarının tanımı (`Status:`, `Approved by / on:`, `Sensitive area:`,
+  `Source:`). Neden: fail-open bir hata tüm iç ekiplerin kapılarını sessizce kaldırır. Bu alana
+  dokunan spec Constraints'te `Sensitive area: gate-enforcement` yazar (`workflows/README.md`, Modes).
+- **Git:** iş dalı → PR → CI yeşil + bir onay → `main`; `main`'e doğrudan commit yok.
+
 Template users: this folder is not part of your workspace — delete it after you create your repo.
