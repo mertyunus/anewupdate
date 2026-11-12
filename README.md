@@ -231,6 +231,13 @@ Everything is plain Markdown and POSIX shell — edit, don't fork the philosophy
   (`Status:` values, `Approved by / on:`) stay English so the gates keep working.
 - Want stack presets? That's the packs layer — coming after v1 proves the core.
 
+## Developing ANEW itself
+
+This repository is the template's source, so it is never bootstrapped: `AGENTS.md` and `docs/`
+stay blank for template users. Work on ANEW itself follows the same invariant rules, with its
+records and working decisions (language, mode, sensitive areas, what "green" means here) in
+[`.anew-dev/README.md`](.anew-dev/README.md). Template users can delete `.anew-dev/`.
+
 ## License
 
 MIT
