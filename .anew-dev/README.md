@@ -34,14 +34,17 @@ AGENTS.md invariant rules) but live here so the template's `specs/` stays empty 
 ## Çalışma kararları (karar kaydı 2026-11-12)
 
 Bu depo ANEW şablonunun kaynağıdır; ürünü şablonun kendisidir. Bu yüzden **bootstrap edilmez**
-(karar: Yunus Mert, 2026-11-12, R-10 seçenek A): `AGENTS.md` ve `docs/*.md` şablonu kullananlar
-için boş kalır. **Bu depoda `AGENTS.md`'nin "STATUS: NOT CONFIGURED … ilk iş bootstrap" satırı ve
+(karar: Yunus Mert, 2026-11-12, R-10 seçenek A): `AGENTS.md` ve `docs/` şablonları şablonu
+kullananlar için boş kalır. **Bu depoda `AGENTS.md`'nin "STATUS: NOT CONFIGURED … ilk iş bootstrap" satırı ve
 doctor'ın bootstrap uyarıları geçersizdir**; geri kalan her şey (değişmez kurallar dahil) aynen
 geçerlidir. ANEW'i iyileştiren her işin spec, plan ve kayıtları bu klasörde tutulur ve aşağıdaki
 kararlara uyar. Kök `README.md` ("Developing ANEW itself") buraya yönlendirir.
+Segment komutları (`/new-feature`, `/analyze`, `/plan` …) bu depoda `specs/active/`, `specs/plans/`,
+`specs/done/` yerine `.anew-dev/specs/`, `.anew-dev/plans/`, `.anew-dev/done/` üzerinde çalışır;
+numaralandırma `.anew-dev/` içinde sürer. Talepte bunu belirtin ("spec .anew-dev/ altında").
 
 - **Language:** `chat=tr · docs=tr`. Kural: `.anew-dev/` dışındaki her dosya İngilizcedir (şablonla
-  kullanıcıya gider). `.anew-dev/` içinde yeni metin Türkçe yazılır; mevcut İngilizce metin olduğu
+  kullanıcıya gider; izlenmeyen yerel dosyalar hariç). `.anew-dev/` içinde yeni metin Türkçe yazılır; mevcut İngilizce metin olduğu
   gibi kalır. Protokol alanları ve değerleri (`Status:`, `Approved by / on:`, `Source:`, `Mode:`,
   şablon başlıkları) her yerde İngilizcedir.
 - **Mode:** `lite` — her spec'in başlık alanı `- Mode: lite` (örnek: `done/0005-lts.md`); bağımsız
@@ -59,9 +62,13 @@ kararlara uyar. Kök `README.md` ("Developing ANEW itself") buraya yönlendirir.
   dosya ve `done/` altındaki her şey (gönderilmiş spec'ler değişmez, kural 7).
 - **Sensitive area: `gate-enforcement`.** Kapsam:
   - `scripts/check`, `scripts/doctor`, `scripts/residue`, `scripts/selftest`, `scripts/init`;
-  - `.github/workflows/check.yml`; `adapters/claude-code/.claude/hooks/protect-shipped.sh`;
+  - `.github/workflows/check.yml`; `.github/pull_request_template.md` (doctor CI'da PR açıklamasındaki
+    `CHECK GREEN` işaretlerini okur);
+  - `adapters/claude-code/.claude/hooks/protect-shipped.sh` ve onu kaydeden
+    `adapters/claude-code/.claude/settings.json`;
   - kapı alanlarını ve işaretlerini tanımlayan metin: `specs/TEMPLATE.md`, `specs/TEMPLATE-mini.md`,
-    `specs/plans/TEMPLATE.md`, `workflows/segments.md`, `docs/commands.md`;
+    `specs/plans/TEMPLATE.md`, `workflows/segments.md`, `docs/commands.md`, `docs/testing.md`
+    (Two speeds, Evidence policy);
   - ve doctor'ın ya da CI'ın okuduğu her alanı veya işareti tanımlayan her metin (`Status:`,
     `Approved by / on:`, `Mode:`, `Self-critique:`, `Sensitive area:`, `Source:`, `→ moved to B-<n>` …).
 
